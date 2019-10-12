@@ -3,7 +3,8 @@ import axios from "axios";
 import './App.css';
 import Header from "./components/Header";
 import Splash from './components/Splash';
-// import Card from "./components/Card";
+import Card from "./components/Card";
+
 
 class App extends Component {
   constructor(props) {
@@ -22,42 +23,54 @@ class App extends Component {
     .then(response => {
       this.setState({
         allCoffees: response.data
-
       });
     })
     .catch(err => console.log(err));
   }
+
+
+
+
+
+
+
+
+
   render(){
     const { allCoffees } = this.state;
     const mappedCoffees = allCoffees.map(coffee => {
       return(
-        <div key={allCoffees.id}>
-          <div >
-            <img className="image-container" src={coffee.picture} alt="coffee"/>
-          </div>
-          <div>
-            <div>{coffee.roaster}</div>
-            <div>{coffee.displayName}</div>
-            <div>{coffee.region}</div>
-            <div>{coffee.roasterTastingNotes}</div>
-            <div>{coffee.comments}</div>
-          </div>
-
+        <div className="card-set">
+        <Card
+        key={coffee.id}
+        picture={coffee.picture}
+        roaster={coffee.roaster}
+        displayName={coffee.displayName}
+        region={coffee.region}
+        roasterTastingNotes={coffee.roasterTastingNotes}
+        comments={coffee.comments}
+        id={coffee.id}
+        />
         </div>
-      )
-    })
-  return (
-    <div className="App">
-      <Header />
-      <div>
-        <Splash/>
-      </div>
-     <div>{mappedCoffees}</div>
-     {/* <Card />  */}
-    </div>
-  );
-}};
 
-export default App;
+        )
+      })
+    return (
+      <div className="App">
+        <Header />
+        <div>
+          <Splash/>
+        </div>
+  
+       <div className='grid'>{mappedCoffees}</div>
+       
+      </div>
+    );
+  }};
+  
+  export default App;
+ 
+
+        
 
 

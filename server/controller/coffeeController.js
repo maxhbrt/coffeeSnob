@@ -7,6 +7,25 @@ module.exports = {
 getAllCoffees: (req, res, next) => {
     res.status(200).send(coffeeData);
 },
+
+addComment: (req, res, next)=> {
+    const { id } = req.params;
+
+    const index = coffeeData.findIndex(element => {
+        return element.id === parseInt(id);
+    })
+    if(index !== -1){
+  const {
+      comments
+  } = req.body;
+  const newComment ={
+      comments,
+  }
+  console.log(coffeeData.newComment)
+  coffeeData[index].comments.push(newComment);
+  res.status(200).send(coffeeData)
+}},
+
 getById: (req, res, next) => {
     const { id } = req.params;
 
