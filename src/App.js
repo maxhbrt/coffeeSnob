@@ -28,13 +28,11 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-
-
-
-
-
-
-
+  updateCoffees = (results) => {
+    this.setState({
+      allCoffees: results
+    })
+  }
 
   render(){
     const { allCoffees } = this.state;
@@ -50,6 +48,7 @@ class App extends Component {
         roasterTastingNotes={coffee.roasterTastingNotes}
         comments={coffee.comments}
         id={coffee.id}
+        updateCoffees={this.updateCoffees}
         />
         </div>
 

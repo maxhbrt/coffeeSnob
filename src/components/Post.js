@@ -1,49 +1,53 @@
-import React, {Component} from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
+
 class Post extends Component {
-constructor(props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
-         comments:""
-    }
+      comments: ""
+    };
 
     this.addComment = this.addComment.bind(this);
+  }
+
+  addComment(id, comments) {
+      console.log("ADD COMMENT START")
+      console.log("ID =", id)
+    let newComment = {
+      comments: comments
+    };
+
+    axios.post(`/api/add_comment/${id}`, newComment).then(response => {
+        console.log("AND THEN", response.data)
+        this.props.updateCoffees(response.data)
+    });
+  }
+
+  deleteComment 
+
+
+  render() {
+      console.log("THIS.PROPS", this.props)
+    return (
+      <div>
+        <input
+          type="text"
+          onChange={e => {
+            this.setState({ [this.props.id]: e.target.value });
+          }}
+        />
+        <button
+          onClick={() =>
+            this.addComment(this.props.id, this.state[this.props.id])
+          }
+          className="myButton"
+        >
+          POST
+        </button>
+      </div>
+    );
+  }
 }
-
-addComment(){
-    
-    
-    const {newComment} = this.state.comments
-    axios.post(`/api/add_comment/${this.props.id}`,
-    newComment).then(response =>{
-        
-        this.setState({
-        })
-    })
-}
-
-
-
-
-
-
-
-render(){
-    
-    return(
-        
-        <div>
-        <input type="text" value={this.state.comments}
-        onChange={(e) => {this.setState({comments:e.target.value})}}/>
-        <button onClick={this.addComment} className="myButton" >POST</button>
-        </div>
-        
-    )
-}
-
-
-
-
-}
-export default Post
+export default Post;

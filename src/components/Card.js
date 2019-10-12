@@ -3,26 +3,17 @@ import Post from "./Post";
 
 
 
+
 class Card extends Component{
-    constructor(props){
-        super(props);
-
-
-      }
+   
        
-    
-
-
-
-
-
-
-
-
-
     render(){
+      console.log("THIS.PROPS =", this.props)
       const { roaster, displayName, region, roasterTastingNotes ,comments, picture, id} = this.props;
-        console.log(this.props)
+      const commentArray = comments.map(comment => {
+        return <h1>{comment.comments}</h1>
+      })
+
           return(
             <div className="card-container">
               <div className='card-box'>
@@ -33,8 +24,9 @@ class Card extends Component{
                 <div>{region}</div>
                 <div>{roasterTastingNotes}</div>
                 {/* <div>{comments}</div> */}
+                <div>{commentArray}</div>
                <div>
-                 <Post id={id}/>
+                 <Post id={id} updateCoffees={this.props.updateCoffees}/>
                </div>
                 </div>
               </div>

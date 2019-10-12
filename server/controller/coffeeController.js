@@ -10,6 +10,8 @@ getAllCoffees: (req, res, next) => {
 
 addComment: (req, res, next)=> {
     const { id } = req.params;
+    console.log("REQ.BODY =", req.body)
+    console.log("REQ.PARAMS =", req.params)
 
     const index = coffeeData.findIndex(element => {
         return element.id === parseInt(id);
