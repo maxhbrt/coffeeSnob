@@ -86,3 +86,7 @@ color: blanchedalmond;
 }
 *:focus {outline:none !important}
 
+.card-header {
+  color: pink;
+  font-size: 25px;
+}

@@ -1,6 +1,6 @@
 const coffeeData = require("../cleaned-data.json");
 
-let id = 1;
+
 module.exports = {
 
 
@@ -58,10 +58,16 @@ updateComment: (req, res, next) => {
 },
 deleteComment: (req, res, next) => {
     const { id } = req.params;
+    console.log("this is the id " + id );
+    
     const index = coffeeData.findIndex(coffee => {
         return coffee.id === parseInt(id);
     })
-    coffeeData[index].comments.splice(index, 1);
+     const commentIndex = coffeeData[index].comments.findIndex(element => {
+     return element === parseInt(element)
+    })
+    console.log("this is the index " + index);
+    coffeeData[index].comments.splice(commentIndex, 1);
     res.status(200).send(coffeeData);
 }
 };
@@ -79,4 +85,11 @@ deleteComment: (req, res, next) => {
 
 
 
-
+// const index = coffeeData.findIndex(coffee => {
+//     return coffee.id === parseInt(id)
+// })
+// if(index !== -1){
+//     const coffeeIndex = coffeeData[index].comments.findIndex(commentIndex => {
+//         return commentIndex.idd === parseInt(idd)
+//     })
+// }

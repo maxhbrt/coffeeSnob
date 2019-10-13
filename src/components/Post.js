@@ -25,7 +25,8 @@ class Post extends Component {
     });
   }
 
-  deleteComment 
+
+  
 
 
   render() {
@@ -38,6 +39,8 @@ class Post extends Component {
             this.setState({ [this.props.id]: e.target.value });
           }}
         />
+        
+        
         <button
           onClick={() =>
             this.addComment(this.props.id, this.state[this.props.id])

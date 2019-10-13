@@ -1,17 +1,50 @@
 import React, { Component } from 'react';
 import Post from "./Post";
+import axios from "axios";
 
 
 
 
 class Card extends Component{
+  constructor(props) {
+    super(props);
+
+    this.state ={
+      comments: ''
+    };
+
+
+  this.deleteComment = this.deleteComment.bind(this);
+  }
+  deleteComment(id, comments){
+    console.log("DELETE COMMENT START")
+    console.log("ID =", id)
+ 
+
+  axios.delete(`/api/delete_comment/${id}`).then(response => {
+      
+      
+      this.props.updateCoffees(response.data)
+      console.log(this.props.updateCoffees)
+  }).catch(err => console.log(err))
+ 
+  
+  }
+
+
    
        
     render(){
-      console.log("THIS.PROPS =", this.props)
+      
       const { roaster, displayName, region, roasterTastingNotes ,comments, picture, id} = this.props;
       const commentArray = comments.map(comment => {
-        return <h1>{comment.comments}</h1>
+        return <h1>{comment.comments} <button 
+        onClick={() => 
+            this.deleteComment(this.props.id, this.state[this.props.id])} 
+        >X</button></h1>
+        
+        
+        
       })
 
           return(
@@ -19,12 +52,20 @@ class Card extends Component{
               <div className='card-box'>
               <div className='card'>
                 <img className="image-container" src={picture} alt="coffee"/>
+                <h1 className="card-header">ROASTER:</h1>
                 <h1>{roaster}</h1>
+                <h1 className="card-header">BATCH:</h1>
                 <h2>{displayName}</h2>
+                
                 <div>{region}</div>
+                <h1 className="card-header">TASTING NOTES:</h1>
                 <div>{roasterTastingNotes}</div>
                 {/* <div>{comments}</div> */}
-                <div>{commentArray}</div>
+                <h1 className="card-header">Leave a review:</h1>
+                <div>{commentArray} 
+                
+                </div>
+                
                <div>
                  <Post id={id} updateCoffees={this.props.updateCoffees}/>
                </div>
