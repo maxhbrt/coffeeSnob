@@ -33,7 +33,7 @@ class Post extends Component {
       console.log("THIS.PROPS", this.props)
     return (
       <div>
-        <input
+        <input className='comment-input'
           type="text"
           onChange={e => {
             this.setState({ [this.props.id]: e.target.value });

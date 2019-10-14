@@ -60,8 +60,9 @@ class App extends Component {
         <div>
           <Splash/>
         </div>
-  
+        <div className='center-grid'>
        <div className='grid'>{mappedCoffees}</div>
+       </div>
        
       </div>
     );

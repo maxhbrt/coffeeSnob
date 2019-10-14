@@ -38,7 +38,7 @@ class Card extends Component{
       
       const { roaster, displayName, region, roasterTastingNotes ,comments, picture, id} = this.props;
       const commentArray = comments.map(comment => {
-        return <h1>{comment.comments} <button 
+        return <h1 className='user-comment'>{comment.comments} <button className='x-button'
         onClick={() => 
             this.deleteComment(this.props.id, this.state[this.props.id])} 
         >X</button></h1>
@@ -53,13 +53,13 @@ class Card extends Component{
               <div className='card'>
                 <img className="image-container" src={picture} alt="coffee"/>
                 <h1 className="card-header">ROASTER:</h1>
-                <h1>{roaster}</h1>
+                <h1 className='roaster-title'>{roaster}</h1>
                 <h1 className="card-header">BATCH:</h1>
-                <h2>{displayName}</h2>
+                <h2 className='card-details'>{displayName}</h2>
                 
-                <div>{region}</div>
+                <div className='card-details'>{region}</div>
                 <h1 className="card-header">TASTING NOTES:</h1>
-                <div>{roasterTastingNotes}</div>
+                <div className='card-details'>{roasterTastingNotes}</div>
                 {/* <div>{comments}</div> */}
                 <h1 className="card-header">Leave a review:</h1>
                 <div>{commentArray} 
