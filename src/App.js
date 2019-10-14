@@ -12,6 +12,7 @@ class App extends Component {
       this.state = {
         allCoffees: []
       }
+      this.setStateAllCoffees = this.setStateAllCoffees.bind(this)
     }
 
   componentDidMount() {
@@ -34,6 +35,12 @@ class App extends Component {
     })
   }
 
+  setStateAllCoffees(updatedCoffees) {
+    this.setState({
+      allCoffees: updatedCoffees
+    })
+  }
+
   render(){
     const { allCoffees } = this.state;
     const mappedCoffees = allCoffees.map(coffee => {
@@ -49,6 +56,8 @@ class App extends Component {
         comments={coffee.comments}
         id={coffee.id}
         updateCoffees={this.updateCoffees}
+        upvote= {coffee.upvote}
+        setStateAllCoffees={this.setStateAllCoffees}
         />
         </div>
 

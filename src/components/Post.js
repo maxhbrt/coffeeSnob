@@ -18,11 +18,14 @@ class Post extends Component {
     let newComment = {
       comments: comments
     };
+    
 
     axios.post(`/api/add_comment/${id}`, newComment).then(response => {
         console.log("AND THEN", response.data)
         this.props.updateCoffees(response.data)
     });
+
+    // this.setState({comments:''});
   }
 
 
@@ -33,7 +36,7 @@ class Post extends Component {
       console.log("THIS.PROPS", this.props)
     return (
       <div>
-        <input className='comment-input'
+        <input className='comment-input' 
           type="text"
           onChange={e => {
             this.setState({ [this.props.id]: e.target.value });
@@ -44,6 +47,7 @@ class Post extends Component {
         <button
           onClick={() =>
             this.addComment(this.props.id, this.state[this.props.id])
+            
           }
           className="myButton"
         >

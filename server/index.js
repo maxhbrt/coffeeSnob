@@ -7,6 +7,7 @@ const {
     getAllCoffees,
     getById,
     updateComment,
+    updateUpvote,
     deleteComment
 } = require("./controller/coffeeController");
 
@@ -14,6 +15,7 @@ app.post("/api/add_comment/:id", addComment);
 app.get("/api/all_coffees", getAllCoffees);
 app.get("/api/coffee/:id", getById);
 app.put("/api/update_comment/:id", updateComment);
+app.put("/api/update_upvote/:id", updateUpvote);
 app.delete("/api/delete_comment/:id", deleteComment);
 
 const port = 9001;

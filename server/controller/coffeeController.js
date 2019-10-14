@@ -43,7 +43,7 @@ getById: (req, res, next) => {
 
 },
 updateComment: (req, res, next) => {
-    const { newComment } = req.body
+    const { indexToEdit ,newComment } = req.body
     const { id } = req.params;
     const index = coffeeData.findIndex(coffee => {
       return coffee.id === parseInt(id);  
@@ -69,8 +69,21 @@ deleteComment: (req, res, next) => {
     console.log("this is the index " + index);
     coffeeData[index].comments.splice(commentIndex, 1);
     res.status(200).send(coffeeData);
+    console.log("this is the commentIndex  " + commentIndex)
+},
+updateUpvote: (req, res, next) => {
+    const { id } = req.params;
+    const index = coffeeData.findIndex(coffee => {
+        return coffee.id === parseInt(id);
+    });
+    if (index !== -1){
+        coffeeData[index].upvote++;
+        res.status(200).send(coffeeData);
+    }else {
+        res.status(404).send("could not upvote")
+    }
 }
-};
+}
 
 
 
